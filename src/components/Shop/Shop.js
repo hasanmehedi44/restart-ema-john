@@ -3,6 +3,8 @@ import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import { addToDb, getStoredCart } from '../../utilities/fakedb';
 import './Shop.css';
+import useProducts from '../../hooks/useProducts';
+import { Link } from 'react-router-dom';
 
 const Shop = () => {
     const [products, setProducts] = useState([]);
@@ -18,7 +20,7 @@ const Shop = () => {
                 setDisplayProducts(data);
             });
     }, []);
-
+    
     useEffect(() => {
         if (products.length) {
             const savedCart = getStoredCart();
@@ -33,7 +35,7 @@ const Shop = () => {
             }
             setCart(storedCart);
         }
-    }, [products])
+    }, [products]);
 
     const handleAddToCart = (product) => {
         const newCart = [...cart, product];
@@ -65,12 +67,17 @@ const Shop = () => {
                             key={product.key}
                             product={product}
                             handleAddToCart={handleAddToCart}
-                        >
-                        </Product>)
+                        ></Product>)
                     }
                 </div>
                 <div className="cart-container">
-                    <Cart cart={cart}></Cart>
+                    <Cart 
+                        cart={cart}
+                    >
+                        <Link to="/review">
+                            <button className="btn-regular">Review Orders</button>
+                        </Link>
+                    </Cart>
                 </div>
             </div>
         </>
