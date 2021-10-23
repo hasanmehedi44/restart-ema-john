@@ -9,7 +9,6 @@ const useProducts = () => {
             .then(data => setProducts(data))
     }, []);
 
-    // return necessary things
     return [products, setProducts];
 };
 
