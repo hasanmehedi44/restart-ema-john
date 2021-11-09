@@ -11,7 +11,8 @@ const Shipping = () => {
     const onSubmit = data => console.log(data);
 
     return (
-        <div>
+        <div className="shipping-container">
+            <h3>Shipping Information</h3>
             <form className="shipping-form" onSubmit={handleSubmit(onSubmit)}>
                 <input placeholder="Name" defaultValue={displayName} {...register("name")} />
                 <input placeholder="Email" defaultValue={email} {...register("email", { required: true })} />
